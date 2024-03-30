@@ -74,3 +74,25 @@ plotmafSummary(maf = WES1_filtered, rmOutlier = TRUE, addStat = 'median', dashbo
 
 mafSummary <- getGeneSummary(WES1_filtered)
 write_csv(mafSummary,"WES1_Gene_mutation_summary.csv")
+
+# Count SNVs
+snvCount <- sum(WES1_filtered@data$Variant_Type == 'SNP', na.rm = TRUE)
+
+# Count Indels
+indelCount <- sum(WES1_filtered@data$Variant_Type %in% c('INS', 'DEL'), na.rm = TRUE)
+
+# Print the counts
+cat("Number of SNVs:", snvCount, "\n")
+cat("Number of Indels:", indelCount, "\n")
+
+
+snvIndelCounts <- aggregate(list(Count = WES1_filtered@data$Variant_Type), 
+                            by = list(Sample = WES1_filtered@data$Tumor_Sample_Barcode, 
+                                      VariantType = WES1_filtered@data$Variant_Type), 
+                            FUN = length)
+
+meanSNVs <- mean(snvIndelCounts$Count[snvIndelCounts$VariantType == 'SNP'], na.rm = TRUE)
+meanIndels <- mean(snvIndelCounts$Count[snvIndelCounts$VariantType %in% c('INS', 'DEL')], na.rm = TRUE)
+
+cat("Mean number of SNVs per sample:", meanSNVs, "\n")
+cat("Mean number of Indels per sample:", meanIndels, "\n")
