@@ -52,12 +52,14 @@ WES1_filtered_with_mutation <- subset(final_WES1_filtered, has_mutation == TRUE)
 
 mean(WES1_filtered_with_mutation$donor_age_at_diagnosis)
 sd(WES1_filtered_with_mutation$donor_age_at_diagnosis)
+table(WES1_filtered_with_mutation$donor_sex)
 
 #Without mutation
 WES1_filtered_without_mutation <- subset(final_WES1_filtered, has_mutation == FALSE)
 
 mean(WES1_filtered_without_mutation$donor_age_at_diagnosis)
 sd(WES1_filtered_without_mutation$donor_age_at_diagnosis)
+table(WES1_filtered_without_mutation$donor_sex)
 
 #Welch Two Sample t-test
 t.test.result <- t.test(WES1_filtered_with_mutation$donor_age_at_diagnosis,WES1_filtered_without_mutation$donor_age_at_diagnosis)
