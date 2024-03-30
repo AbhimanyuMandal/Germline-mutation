@@ -1,0 +1,21 @@
+setwd("/mnt/swift/abhimanyu")
+OncoKB <- read_tsv("cancerGeneList.tsv")
+OncoKB_gene <- OncoKB$`Hugo Symbol`
+WES2_gene <-WES2@data$Hugo_Symbol
+WES2_data <- WES2@data
+
+#ICGC and OncoKB
+common_genes_OncoKB_Uchicago <- intersect(WES2_gene, OncoKB_gene)
+# Count mutations per gene across all samples
+mutation_counts_Uchicago <- table(WES2_data$Hugo_Symbol)
+# Sort the genes based on mutation frequency
+sorted_counts_Uchicago <- as.data.frame(sort(mutation_counts_Uchicago, decreasing = TRUE))
+
+# Filter out these genes
+WES2_filtered <- WES2
+WES2_filtered@data <- WES2_filtered@data[WES2_filtered@data$Hugo_Symbol %in% common_genes_OncoKB_Uchicago, ]
+WES2_filtered@gene.summary <- WES2_filtered@gene.summary[WES2_filtered@gene.summary$Hugo_Symbol %in% common_genes_OncoKB_Uchicago, ]
+
+# Test for interactions in the filtered dataset
+check <- data.frame(somaticInteractions(maf = WES2_filtered,top = 18, showCounts = TRUE))
+somaticInteractions(maf = WES2_filtered,top = 18, fontSize = 0.55, pvalue = c(0.05, 0.1)) #Co-occurence plot 
