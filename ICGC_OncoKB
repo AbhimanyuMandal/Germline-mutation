@@ -66,7 +66,7 @@ t.test.result <- t.test(WES1_filtered_with_mutation$donor_age_at_diagnosis,WES1_
 print(t.test.result)
 
 #Oncoplot
-oncoplot(maf=WES1, top=100, fontSize = 0.65) #Oncoplot for ICGC data
+oncoplot(maf=WES1_filtered, top=100, fontSize = 0.65) #Oncoplot for ICGC data
 
 #Maf summary
 plotmafSummary(maf = WES1_filtered, rmOutlier = TRUE, addStat = 'median', dashboard = TRUE, 
