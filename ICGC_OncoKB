@@ -72,3 +72,5 @@ oncoplot(maf = WES1_filtered, top = 30, fontSize = 0.55) #Oncoplot for ICGC data
 plotmafSummary(maf = WES1_filtered, rmOutlier = TRUE, addStat = 'median', dashboard = TRUE, 
                titvRaw = FALSE, top = 30,showBarcodes = TRUE,textSize = 0.5) #Summary data for ICGC data
 
+mafSummary <- getGeneSummary(WES1_filtered)
+write_csv(mafSummary,"WES1_Gene_mutation_summary.csv")
