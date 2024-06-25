@@ -1,9 +1,10 @@
 #This is the first step in the analysis.
-###The first half includes data pre-processing - bamtofastq, BWA alignment, Marking Duplicates, BQSR
-###The second half includes identifying SNPs and indels - Haplotypecaller, GenotypeGVCFs, Variant Annotator, VQSR
+
+#The first half includes data pre-processing - bamtofastq, BWA alignment, Marking Duplicates, BQSR
+##The second half includes identifying SNPs and indels - Haplotypecaller, GenotypeGVCFs, Variant Annotator, VQSR
 ###After identifying the variants, they are further annotated and filtered using Variant Effect Predictor (VEP) tool
 
-
+#defining variables################################################################################
 curr_dir=$(pwd)
 bwa=/opt/lib/bwa-mem2/bwa-mem2
 bwa_index=/opt/ref-genomes/human_genome_bwa-mem2/hg38_v0_Homo_sapiens_assembly38.fasta
@@ -60,6 +61,9 @@ $GATK ApplyBQSR \
 -I ${x%.*}'_duplicate_marked.RG.bam' \
   --bqsr-recal-file ${x%.*}'_base_recal.table' \
 -O ${x%.*}'_base_recal.bam'
+
+#Indexing of the bam files after pre-processing#####################################################
+samtools index -M *_base_recal.bam
 
 #Calling SNPs and variants simultaneously using HaplotypeCaller#####################################
 $GATK HaplotypeCaller \
