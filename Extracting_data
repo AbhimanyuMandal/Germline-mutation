@@ -1,5 +1,5 @@
 ##This step helps in extracting the data after pre-processing and filtering the data
-##The data collected is then used for further analysis
+###Data is collected from the maf file for further analysis in R programming
 
 setwd("/mnt/swift/abhimanyu/Germline-mutations/final_run2/")
 maf1= read.maf('0189a58ca2e6aeeea26b2ce49444bd2e.Sample_00910131_2_output_vqsr_vep_filter_PASS.maf')
