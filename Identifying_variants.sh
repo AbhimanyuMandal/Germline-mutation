@@ -122,3 +122,11 @@ $filter_vep \
 --output_file ${x%.*}'_vep_filter_PASS.vcf' \
 --filter "FILTER is PASS"
 done
+
+for x in $(awk 'BEGIN {FS="\t"}; NR>0 && NR<63 {print $1}' list.txt);
+do
+perl vcf2maf.pl \
+--input-vcf ${x%.*} _vep_filter_PASS.vcf' \
+--output-maf ${x%.*} _vep_filter_PASS.maf \
+--vep-path /mnt/10TB/VEP110/ensembl-vep/vep \
+--ref-fasta $bwa_index
