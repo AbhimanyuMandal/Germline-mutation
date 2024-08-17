@@ -1,3 +1,10 @@
+#After collecting th data from both the cohorts, the genes were compared with the gene list present in the OncoKB database.
+##Here, we did the study for the Uchicago dataset and OncoKB database. The top mutated genes that were present in both the Uchicago dataset 
+and the OncoKB database were used for further study, such as survival analysis
+##Samples were divided into two groups: Mutation-positive (having mutation=TRUE) and Mutation-negative groups (having mutation=FALSE). 
+OncoPlot, MafSummary were plotted for visualizing the top mutated genes in Uchicago cohort
+
+
 setwd("/mnt/swift/abhimanyu")
 OncoKB <- read_tsv("cancerGeneList.tsv")
 OncoKB_gene <- OncoKB$`Hugo Symbol`
