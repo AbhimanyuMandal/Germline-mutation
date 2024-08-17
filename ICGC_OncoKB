@@ -1,8 +1,9 @@
 #After collecting th data from both the cohorts, the genes were compared with the gene list present in the OncoKB database.
 ##Here, we did the study for the ICGC dataset and OncoKB database. The top mutated genes that were present in both the ICGC dataset 
-and the OncoKB database were used for further study, such as survival analysis
+and the OncoKB database were used for further study. 
+###OncoPlot, MafSummary were plotted for visualizing the top mutated genes in ICGC cohort
 ##Samples were divided into two groups: Mutation-positive (having mutation=TRUE) and Mutation-negative groups (having mutation=FALSE). 
-OncoPlot, MafSummary were plotted for visualizing the top mutated genes in ICGC cohort
+
 
 
 setwd("/mnt/swift/abhimanyu")
