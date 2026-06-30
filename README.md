@@ -1,4 +1,4 @@
-# Germline Variant Analysis Pipeline
+# End-to-End Germline Variant Calling and Annotation Workflow
 
 A comprehensive bioinformatics workflow for identifying, annotating, filtering, and prioritizing germline genetic variants from Next-Generation Sequencing (NGS) data. This project demonstrates an end-to-end variant analysis pipeline following widely accepted best practices for genomic data processing and variant interpretation.
 
